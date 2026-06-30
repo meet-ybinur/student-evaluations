@@ -1,0 +1,1058 @@
+{
+  "source": "New surveys- educational team-questions.xlsx",
+  "segments": [
+    "Computer Science",
+    "Entrepreneurship",
+    "Startups & Status Quo",
+    "Deeper Understanding",
+    "Regional Dialogue"
+  ],
+  "surveys": [
+    "Y1_summer",
+    "Y1_end_YL",
+    "Y2_summer",
+    "Y2_end_YL",
+    "Y3_summer"
+  ],
+  "demographics": [
+    "gender (M/F)",
+    "nationality (Palestinian/Israeli)"
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "I know how to use CS skills I learned during \"module\"",
+      "baseline": false,
+      "tag": "Outcome",
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 2,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "I'm interested in learning more CS",
+      "baseline": true,
+      "tag": "Experience",
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 3,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "My CS team (instructors and TAs) treat me with respect",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 4,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "My CS team (instructors and TAs) are easy to talk to when I have questions or problems",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 5,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "I am proud of my progress in CS so far",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 6,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "Which zone do you mostly feel you’re in during CS sessions?",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 7,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "My peers help me when I ask them for help or guidance in CS",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 8,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "I am proud of the personal work I made on the CS group project",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 9,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "Working with my team members on our cs project was a positive experience",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 10,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "I feel i helped my team members to bring their strength to our teamwork in our CS project",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 11,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "I feel more equipped to engage in dialogue and conflict resolution.",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 12,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "MEET helped me develop my leadership skills",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 13,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "MEET has had an impact on my self-confidence.",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 14,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "MEET helped me identify and pursue career aspirations in STEM fields",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 15,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "My knowledge in CS incerased as a result of my participation in MEET",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 16,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "My knowledge in Entrep incerased as a result of my participation in MEET",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 17,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "MEET impacted my confidence in pursuing professional direction",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 18,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "MEET helped me develop skills or knowledge to help me pursue higher education",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 19,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "I feel more equipped to pursue career opportunities for myself after completing MEET",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 20,
+      "segment": "Computer Science",
+      "segment_raw": "computer science",
+      "text": "MEET impacted my understanding of inequalities in my society",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 21,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "My entrepreneurship team ( instructors and TAs) treat me with respect",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 22,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "My entrepreneurship team ( instructors and TAs) were easy to talk to when I had questions or problems",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 23,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "In which zone do you mostly feel you’re at during Entrepreneurship sessions?",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 24,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "MEET helped me gain practical experience in entrepreneurship.",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 25,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "I'm intersted in learning Entrepreneurship",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 26,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "Working with my team members on our entrepreneurship project was a positive experience",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 27,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "I am proud of the personal work I made on the entrepreneurship group project",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 28,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "MEET inspired me to become entrepreneur in future",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 29,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "My peers help me when I ask them for help or guidance in entrepreneurship",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 30,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "I feel i helped my team members to bring their strength to our teamwork in our entrepreneurship project",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 31,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "I know how to use entrepreneurship skills I learned during Y1 Summer",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 32,
+      "segment": "Entrepreneurship",
+      "segment_raw": "entrepreneurship",
+      "text": "I am proud of my progress in entrepreneurship so far",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 33,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "The process helped to learn about status-quos in other communities",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 34,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "I feel that I'm doing social impact through working in my startup",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 35,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "I feel I can apply the tools I gained in the startup experience in my future career",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 36,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "I am interested in learning more about the various SQs of my fellow hub-mates within their respective communities.",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 37,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "I have an understanding of the different stages involved in startup development",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 38,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "I feel this process is helping me gain more awareness of SQs in my community",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 39,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "Working with my team on our SQ helped to gain deeper understanding of it",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 40,
+      "segment": "Startups & Status Quo",
+      "segment_raw": "Startups & Status quo",
+      "text": "I feel after this process, my hub-mates learned new things about my own reality in my community",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 41,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "Participation in MEET increased my willingness to collaborate with individuals from diverse nationalities on various projects.",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 42,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "In which zone do you mostly feel you’re at during DU sessions?",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 43,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I feel comfortable to share my opinions, thoughts and feelings in my group in DU sessions",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 44,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "My group members make me feel comfortable to share my opinions, thoughts and feelings in my group in DU sessions",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 45,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I am interested in learning more about my peers realities, historical narratives and identities",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 46,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I increased my knowledge about my peers realities, historical narratives and identities",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 47,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I learned something new about myself in the last semester, What was it?",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 48,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I felt heard in my group discussions",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": true,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 49,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I managed to bring my strength to our teamwork",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 50,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "Working alongside individuals from diverse backgrounds allowed me to appreciate the value of diversity.",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 51,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I feel i helped my team members to bring their strength to our teamwork",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 52,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "I feel more prepared to address conflicts in my group",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 53,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "From 1-5 rate your experience with sharing your identities with others",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": false,
+        "Y2_end_YL": false,
+        "Y3_summer": false
+      }
+    },
+    {
+      "id": 54,
+      "segment": "Deeper Understanding",
+      "segment_raw": "DU",
+      "text": "i believe that working in diverse groups is beneficial",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 55,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I welcome discussions on social and political issues related to my society",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 56,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "participation in MEET increased my ability to empathize and put myself in the position of others, including those from different identities and nationalities",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": false,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 57,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "participation in MEET increased my ability to inspire and empower others to promote a common goal",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 58,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "Participation in MEET increased my ability to share clear messages and convey complex ideas in a way that is easily understandable for everyone.",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 59,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I have the ability to listen patiently to people who think differently than me",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 60,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I believe I should be working in an diverse environment and with both Israelis and Palestinians",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 61,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I believe that fostering cooperation among nationalities is essential for the well-being of the people living in this region.",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 62,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "My coordinators treated me with respect",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 63,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "My coordinators make me feel comfortable to share my opinions, thoughts and feelings",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 64,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "After taking part in MEET, I can now understand the perspective of people from the other nationality",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 65,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I would like to continue to work on my startup after the summer",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": false,
+        "Y1_end_YL": false,
+        "Y2_summer": false,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 66,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I feel close connection to students in my group",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 67,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I have trust in the students in my group",
+      "baseline": false,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 68,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "To what extent do you agree that gender equality is vital for the establishment of a fair and just society?",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": false,
+        "Y2_summer": true,
+        "Y2_end_YL": false,
+        "Y3_summer": true
+      }
+    },
+    {
+      "id": 69,
+      "segment": "Regional Dialogue",
+      "segment_raw": "RD",
+      "text": "I am interested in joining a partnership with people from the other community Comment end",
+      "baseline": true,
+      "tag": null,
+      "surveys": {
+        "Y1_summer": true,
+        "Y1_end_YL": true,
+        "Y2_summer": true,
+        "Y2_end_YL": true,
+        "Y3_summer": true
+      }
+    }
+  ]
+}

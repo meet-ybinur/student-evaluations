@@ -1,0 +1,85 @@
+@import "../design-system/meet/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Base element defaults — MEET navy canvas, cream type.
+   ============================================================ */
+html, body {
+  background: var(--bg);
+  color: var(--fg-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  margin: 0;
+}
+h1 { font-size: var(--fs-56); line-height: var(--lh-tight); }
+h2 { font-size: var(--fs-40); }
+h3 { font-size: var(--fs-24); line-height: var(--lh-tight); }
+h4 { font-size: var(--fs-20); line-height: var(--lh-tight); }
+
+p { font-family: var(--font-body); line-height: var(--lh-relax); margin: 0; }
+strong, b { font-weight: var(--fw-bold); }
+
+a {
+  color: var(--meet-teal);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out);
+}
+a:hover { border-bottom-color: currentColor; }
+
+* { box-sizing: border-box; }
+
+/* ---------- Cream-surface override ---------- */
+.on-cream { background: var(--bg-cream); color: var(--fg-on-cream); }
+.on-cream p { color: var(--fg-on-cream); }
+.on-cream a { color: var(--meet-navy); }
+
+/* ---------- Focus ---------- */
+:focus-visible { outline: 2px solid var(--meet-teal); outline-offset: 2px; }
+
+/* ---------- Utility helpers used across the app ---------- */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.text-cream { color: var(--meet-cream); }
+.text-teal { color: var(--meet-teal); }
+.text-navy { color: var(--meet-navy); }
+.text-muted { color: var(--fg-muted); }
+.text-subtle { color: var(--fg-subtle); }
+
+/* MEET brand wordmark is always lowercase. */
+.meet-word { text-transform: lowercase; }
+
+/* Hairline rule */
+.meet-rule { height: 1px; background: var(--stroke-on-navy); border: 0; }
+
+/* Card on navy: deep-navy nested surface */
+.meet-card {
+  background: var(--bg-deep);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--stroke-on-navy);
+}
+
+/* Animations — restrained per brand */
+@keyframes meet-fade-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.meet-enter { animation: meet-fade-up var(--dur-slow) var(--ease-out) both; }
+
+/* Spinner */
+@keyframes meet-spin { to { transform: rotate(360deg); } }
+.meet-spin { animation: meet-spin 0.8s linear infinite; }

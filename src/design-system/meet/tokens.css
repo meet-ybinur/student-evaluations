@@ -1,0 +1,96 @@
+/* ============================================================
+   MEET Design System — Colors & Type Foundations
+   Ported from the MEET Design System (claude_design project
+   033ce4ee-…). Font paths adapted to Next.js /public.
+   Source of truth for brand colors, typography, spacing.
+   ============================================================ */
+
+/* ---------- FONTS ----------
+   Archer (Hoefler & Co.) — display slab-serif, the brand voice.
+   Proxima Nova (Mark Simonson) — supporting humanist sans-serif.
+   Self-hosted from /public/fonts. */
+
+@font-face { font-family: 'Archer'; src: url('/fonts/Archer-Book.woff2') format('woff2');     font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archer'; src: url('/fonts/Archer-Medium.woff2') format('woff2');   font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archer'; src: url('/fonts/Archer-SemiBold.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archer'; src: url('/fonts/Archer-Bold.woff2') format('woff2');     font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archer'; src: url('/fonts/Archer-Black.woff2') format('woff2');    font-weight: 800; font-style: normal; font-display: swap; }
+
+@font-face { font-family: 'Proxima Nova'; src: url('/fonts/ProximaNova-Regular.otf') format('opentype');  font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; src: url('/fonts/ProximaNova-Semibold.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Proxima Nova'; src: url('/fonts/ProximaNova-Bold.otf') format('opentype');     font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  --meet-navy: #004658;
+  --meet-navy-deep: #09313C;
+  --meet-teal: #42B6B4;
+  --meet-red: #E04652;
+  --meet-gray: #6F7E84;
+
+  /* ---------- CREAM / NEUTRALS ---------- */
+  --meet-cream: #FEFBF4;
+  --meet-cream-soft: #F4EFE5;
+  --meet-cream-edge: #EBE6DA;
+
+  /* ---------- SEMANTIC FOREGROUND (on navy bg) ---------- */
+  --fg-primary:    var(--meet-cream);
+  --fg-accent:     var(--meet-teal);
+  --fg-muted:      rgba(254, 251, 244, 0.72);
+  --fg-subtle:     rgba(254, 251, 244, 0.52);
+  --fg-on-cream:   var(--meet-navy);
+  --fg-on-cream-2: var(--meet-navy-deep);
+
+  /* ---------- SEMANTIC BACKGROUND ---------- */
+  --bg:            var(--meet-navy);
+  --bg-deep:       var(--meet-navy-deep);
+  --bg-cream:      var(--meet-cream);
+  --bg-cream-soft: var(--meet-cream-soft);
+  --bg-teal:       var(--meet-teal);
+  --bg-red:        var(--meet-red);
+
+  --stroke-on-navy:  rgba(254, 251, 244, 0.15);
+  --stroke-on-cream: var(--meet-cream-edge);
+
+  /* success / warning derived from brand (semantic dashboard cues) */
+  --signal-good: var(--meet-teal);
+  --signal-warn: #E0A23C;
+  --signal-bad:  var(--meet-red);
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: 'Archer', 'Archer Pro', 'ArcherPro', Georgia, 'Times New Roman', serif;
+  --font-body:    'Proxima Nova', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ---------- TYPE SCALE ---------- */
+  --fs-12: 12px; --fs-14: 14px; --fs-16: 16px; --fs-20: 20px; --fs-24: 24px;
+  --fs-32: 32px; --fs-40: 40px; --fs-56: 56px; --fs-80: 80px;
+
+  /* ---------- WEIGHTS ---------- */
+  --fw-book: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700; --fw-black: 800;
+
+  /* ---------- LINE HEIGHT ---------- */
+  --lh-tight: 1.0; --lh-snug: 1.1; --lh-base: 1.15; --lh-relax: 1.35;
+
+  /* ---------- LETTER SPACING ---------- */
+  --ls-tight: -0.01em;
+
+  /* ---------- SPACING (4px grid) ---------- */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+
+  /* ---------- RADII ---------- */
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-pill: 999px;
+
+  /* ---------- ELEVATION ---------- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.18);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.22);
+  --shadow-lg: 0 12px 36px rgba(0,0,0,0.28);
+
+  /* ---------- MOTION ---------- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
+
+  /* ---------- LAYOUT ---------- */
+  --container-max: 1200px;
+  --page-pad: 30px;
+}
