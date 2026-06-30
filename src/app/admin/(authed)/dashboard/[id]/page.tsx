@@ -7,6 +7,7 @@ import { StatTile } from "@/components/meet";
 import { DemographicToggle } from "@/components/dashboard/DemographicToggle";
 import { SegmentChart } from "@/components/dashboard/SegmentChart";
 import { AnalysisPanel } from "@/components/dashboard/AnalysisPanel";
+import { QuestionTrend } from "@/components/dashboard/QuestionTrend";
 
 export const dynamic = "force-dynamic";
 
@@ -141,34 +142,6 @@ function Chip({ value, suffix = "pp" }: { value: number | null; suffix?: string 
   );
 }
 
-/** Compact multi-year sparkline: prior years + current, oldest -> newest. */
-function MiniTrend({ c, year }: { c: QuestionComparison; year: number }) {
-  if (!c.history.length || c.current.favorablePct == null) return null;
-  const points = [...c.history.map((h) => ({ label: `'${String(h.year).slice(2)}`, v: h.value })), { label: `'${String(year).slice(2)}`, v: c.current.favorablePct }];
-  const w = 96;
-  const h = 22;
-  const xs = (i: number) => (points.length === 1 ? w / 2 : (i / (points.length - 1)) * (w - 4) + 2);
-  const ys = (v: number) => h - 2 - (v / 100) * (h - 4);
-  const path = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xs(i).toFixed(1)} ${ys(p.v).toFixed(1)}`).join(" ");
-  const first = c.history[0].value;
-  const span = Math.round((c.current.favorablePct - first) * 10) / 10;
-  const up = span >= 0;
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }} title={points.map((p) => `${p.label} ${p.v}%`).join("  →  ")}>
-      <svg width={w} height={h} style={{ overflow: "visible" }}>
-        <path d={path} fill="none" stroke={up ? "var(--meet-teal)" : "var(--meet-red)"} strokeWidth={1.5} strokeLinejoin="round" strokeLinecap="round" />
-        {points.map((p, i) => (
-          <circle key={i} cx={xs(i)} cy={ys(p.v)} r={i === points.length - 1 ? 2.4 : 1.6} fill={i === points.length - 1 ? (up ? "var(--meet-teal)" : "var(--meet-red)") : "var(--fg-subtle)"} />
-        ))}
-      </svg>
-      <span style={{ fontSize: 11, color: "var(--fg-subtle)" }}>
-        {points.map((p) => `${p.label} ${p.v}`).join(" → ")}{" "}
-        <span style={{ color: up ? "var(--meet-teal)" : "var(--meet-red)", fontWeight: 700 }}>({up ? "+" : ""}{span}pp over {c.history.length}y)</span>
-      </span>
-    </div>
-  );
-}
-
 function QuestionRow({ c, year }: { c: QuestionComparison; year: number }) {
   if (c.responseType === "open_text") {
     return (
@@ -187,14 +160,15 @@ function QuestionRow({ c, year }: { c: QuestionComparison; year: number }) {
   const fav = c.current.favorablePct;
   const target = c.target;
   const meets = fav != null && target != null && fav >= target;
+  const trendPoints =
+    fav != null && c.history.length
+      ? [...c.history.map((h) => ({ label: `'${String(h.year).slice(2)}`, v: h.value })), { label: `'${String(year).slice(2)}`, v: fav }]
+      : [];
 
   return (
     <div style={{ padding: "16px 0", borderBottom: "1px solid rgba(254,251,244,0.07)", display: "grid", gridTemplateColumns: "1fr 160px 90px 90px", gap: 16, alignItems: "center" }}>
       <div>
-        <div style={{ color: "var(--meet-cream)", fontSize: 15 }}>
-          {c.text}
-          {c.baseline && <span style={{ marginLeft: 8, fontSize: 11, color: "var(--fg-subtle)" }}>baseline</span>}
-        </div>
+        <div style={{ color: "var(--meet-cream)", fontSize: 15 }}>{c.text}</div>
         {/* favorable bar with target marker */}
         <div style={{ position: "relative", height: 8, background: "var(--meet-navy)", borderRadius: 999, marginTop: 8, maxWidth: 360 }}>
           <div style={{ width: `${fav ?? 0}%`, height: "100%", background: meets ? "var(--meet-teal)" : "#E0A23C", borderRadius: 999 }} />
@@ -202,7 +176,7 @@ function QuestionRow({ c, year }: { c: QuestionComparison; year: number }) {
             <div style={{ position: "absolute", left: `${target}%`, top: -3, bottom: -3, width: 2, background: "var(--meet-cream)" }} title={`Target ${target}%`} />
           )}
         </div>
-        <MiniTrend c={c} year={year} />
+        <QuestionTrend points={trendPoints} />
       </div>
       <div>
         <span className="font-display" style={{ fontSize: 26, fontWeight: 700, color: "var(--meet-cream)" }}>

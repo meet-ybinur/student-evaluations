@@ -152,7 +152,6 @@ export function SurveyForm({
               { value: "female", label: "Female" },
               { value: "male", label: "Male" },
               { value: "other", label: "Other" },
-              { value: "prefer_not", label: "Prefer not to say" },
             ]}
           />
         </div>
@@ -166,7 +165,6 @@ export function SurveyForm({
               { value: "palestinian", label: "Palestinian" },
               { value: "israeli", label: "Israeli" },
               { value: "other", label: "Other" },
-              { value: "prefer_not", label: "Prefer not to say" },
             ]}
           />
         </div>
@@ -263,9 +261,6 @@ function QuestionRow({
       <div style={{ display: "flex", gap: 8 }}>
         <p style={{ color: invalid ? "var(--meet-red)" : "var(--meet-cream)", fontSize: 16, fontWeight: 500 }}>
           {q.display_text}
-          {q.baseline && (
-            <span style={{ marginLeft: 8, fontSize: 11, color: "var(--fg-subtle)", verticalAlign: "middle" }}>baseline</span>
-          )}
         </p>
       </div>
       <div style={{ marginTop: 14 }}>
