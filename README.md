@@ -23,7 +23,8 @@ spreadsheet); the database is seeded from it.
 - **Students** open `/s/<code>` (or enter a code on the home page), answer demographics
   (gender, community) + the survey, and submit once. Responses are anonymous — a used
   access code is never stored against a response.
-- **Staff** sign in at `/admin`:
+- **Staff** sign in at `/admin` with **Google SSO** (access limited to the emails in
+  `ADMIN_EMAILS` / `ADMIN_EMAIL_DOMAIN`):
   - **Cycles** — create a survey-in-a-year, open/close it, generate one-time access codes
     (downloadable as CSV with per-student links).
   - **Targets & history** — paste CSV of per-question targets and prior-year results.
@@ -54,6 +55,10 @@ Anonymous submission is handled by the `submit_survey` `SECURITY DEFINER` functi
 validates a one-time token and writes the response atomically. RLS denies all other anon
 access; admin reads run server-side with the service role.
 
+Admin auth is **Google SSO** via Supabase. In the Supabase dashboard enable the Google
+provider and add your site + `…/auth/callback` to the allowed redirect URLs. Authorization
+is enforced by `ADMIN_EMAILS` (and optional `ADMIN_EMAIL_DOMAIN`).
+
 Scripts:
 - `npm run seed` — questions + survey membership (idempotent). `-- --demo` adds sample data.
-- `ADMIN_EMAIL=… ADMIN_PASSWORD=… npm run create-admin` — create a staff login.
+- `npm run create-admin` — optional, for email/password accounts (not needed for SSO).

@@ -2,6 +2,7 @@ import "server-only";
 import { redirect } from "next/navigation";
 import { createServerSupabase } from "./supabase/server";
 import { createAdminClient } from "./supabase/admin";
+import { isAllowedAdmin } from "./admin-allowlist";
 import { buildDashboard, type DashboardData, type DemographicKey, type QuestionMeta } from "./aggregate";
 import { SURVEY_BY_KEY, type SurveyKey } from "./survey-data";
 
@@ -11,6 +12,10 @@ export async function requireAdmin() {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) redirect("/admin/login");
+  if (!isAllowedAdmin(user.email)) {
+    await supabase.auth.signOut();
+    redirect("/admin/login?error=unauthorized");
+  }
   return user;
 }
 
