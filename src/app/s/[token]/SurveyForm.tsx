@@ -9,6 +9,10 @@ type AnswerVal = { num?: number; text?: string; choice?: string };
 
 const ICON_BY_SEGMENT: Record<string, string> = Object.fromEntries(SEGMENTS.map((s) => [s.name, s.icon]));
 
+type Step =
+  | { kind: "about" }
+  | { kind: "segment"; name: string; qs: SurveyQuestion[] };
+
 export function SurveyForm({
   token,
   title,
@@ -24,15 +28,18 @@ export function SurveyForm({
   const [gender, setGender] = useState<string>("");
   const [nationality, setNationality] = useState<string>("");
   const [answers, setAnswers] = useState<Record<number, AnswerVal>>({});
+  const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showErrors, setShowErrors] = useState(false);
 
-  const segments = useMemo(() => {
+  // Build steps: About you, then one step per segment.
+  const steps = useMemo<Step[]>(() => {
     const order = SEGMENTS.map((s) => s.name);
     const grouped: Record<string, SurveyQuestion[]> = {};
     for (const q of questions) (grouped[q.segment] ??= []).push(q);
-    return Object.entries(grouped).sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]));
+    const segs = Object.entries(grouped).sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]));
+    return [{ kind: "about" }, ...segs.map(([name, qs]) => ({ kind: "segment" as const, name, qs }))];
   }, [questions]);
 
   const required = questions.filter((q) => q.response_type !== "open_text");
@@ -47,25 +54,48 @@ export function SurveyForm({
     setAnswers((prev) => ({ ...prev, [id]: { ...prev[id], ...val } }));
   }
 
-  function firstUnanswered(): number | null {
-    if (!demoDone) return -1;
-    const q = required.find((q) => {
-      const a = answers[q.id];
-      return !(a && (a.num != null || a.choice != null));
-    });
-    return q ? q.id : null;
+  function isAnswered(q: SurveyQuestion) {
+    const a = answers[q.id];
+    return q.response_type === "open_text" || (a != null && (a.num != null || a.choice != null));
   }
 
-  async function submit() {
-    setShowErrors(true);
-    const missing = firstUnanswered();
-    if (missing !== null) {
-      setError("Please answer all questions before submitting.");
-      const el = document.getElementById(missing === -1 ? "demographics" : `q-${missing}`);
-      el?.scrollIntoView({ behavior: "smooth", block: "center" });
+  /** Returns the element id of the first unanswered item in the current step, or null. */
+  function firstMissingInStep(s: Step): string | null {
+    if (s.kind === "about") {
+      if (!gender || !nationality) return "demographics";
+      return null;
+    }
+    const q = s.qs.find((q) => !isAnswered(q));
+    return q ? `q-${q.id}` : null;
+  }
+
+  function goNext() {
+    const current = steps[step];
+    const missing = firstMissingInStep(current);
+    if (missing) {
+      setShowErrors(true);
+      setError(current.kind === "about" ? "Please answer both questions to continue." : "Please answer all questions in this section.");
+      document.getElementById(missing)?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     setError(null);
+    setShowErrors(false);
+    if (step === steps.length - 1) {
+      submit();
+      return;
+    }
+    setStep((s) => s + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function goBack() {
+    setError(null);
+    setShowErrors(false);
+    setStep((s) => Math.max(0, s - 1));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  async function submit() {
     setSubmitting(true);
     const payload = {
       token,
@@ -99,6 +129,10 @@ export function SurveyForm({
     }
   }
 
+  const current = steps[step];
+  const isLast = step === steps.length - 1;
+  const sectionLabel = current.kind === "about" ? "About you" : current.name;
+
   return (
     <div>
       {/* Header */}
@@ -106,93 +140,87 @@ export function SurveyForm({
         <div className="font-display" style={{ color: "var(--meet-teal)", fontSize: 13, fontWeight: 700, letterSpacing: "-0.01em" }}>
           {label}
         </div>
-        <h1 style={{ fontSize: 34, marginTop: 8, color: "var(--meet-cream)" }}>{title}</h1>
-        <p style={{ marginTop: 12, color: "var(--fg-muted)", maxWidth: 620 }}>
-          Answer honestly — there are no right answers. Your responses are anonymous and help{" "}
-          <strong className="meet-word">meet</strong> improve the program.
-        </p>
+        <h1 style={{ fontSize: 30, marginTop: 8, color: "var(--meet-cream)" }}>{title}</h1>
       </div>
 
-      {/* Sticky progress */}
-      <div
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 5,
-          background: "var(--meet-navy)",
-          padding: "14px 0",
-          marginTop: 16,
-          borderBottom: "1px solid var(--stroke-on-navy)",
-        }}
-      >
+      {/* Progress */}
+      <div style={{ padding: "16px 0", marginTop: 8, borderBottom: "1px solid var(--stroke-on-navy)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: "var(--fg-muted)" }}>
-          <span>{progress}% complete</span>
           <span>
-            {answeredCount}/{required.length} questions
+            Section {step + 1} of {steps.length} · {sectionLabel}
           </span>
+          <span>{progress}% complete</span>
         </div>
         <div style={{ height: 6, background: "var(--meet-navy-deep)", borderRadius: 999, marginTop: 8, overflow: "hidden" }}>
           <div style={{ width: `${progress}%`, height: "100%", background: "var(--meet-teal)", transition: "width 200ms" }} />
         </div>
       </div>
 
-      {/* Demographics */}
-      <section id="demographics" style={{ marginTop: 32 }}>
-        <h3 style={{ color: "var(--meet-cream)" }}>About you</h3>
-        <p style={{ color: "var(--fg-subtle)", fontSize: 13, marginTop: 6 }}>
-          Used only for grouped analysis. Never linked to your identity.
-        </p>
-        <div style={{ marginTop: 18 }}>
-          <ChoiceField
-            legend="Gender"
-            value={gender}
-            onChange={setGender}
-            invalid={showErrors && !gender}
-            options={[
-              { value: "female", label: "Female" },
-              { value: "male", label: "Male" },
-              { value: "other", label: "Other" },
-            ]}
-          />
-        </div>
-        <div style={{ marginTop: 18 }}>
-          <ChoiceField
-            legend="Community"
-            value={nationality}
-            onChange={setNationality}
-            invalid={showErrors && !nationality}
-            options={[
-              { value: "palestinian", label: "Palestinian" },
-              { value: "israeli", label: "Israeli" },
-              { value: "other", label: "Other" },
-            ]}
-          />
-        </div>
-      </section>
+      {/* Step content */}
+      <div className="meet-enter" key={step} style={{ minHeight: 280 }}>
+        {current.kind === "about" ? (
+          <section id="demographics" style={{ marginTop: 28 }}>
+            <h3 style={{ color: "var(--meet-cream)" }}>About you</h3>
+            <p style={{ color: "var(--fg-muted)", fontSize: 14, marginTop: 8, maxWidth: 560 }}>
+              Answer honestly — there are no right answers. Your responses are anonymous and help{" "}
+              <strong className="meet-word">meet</strong> improve the program. These two questions are used only for grouped
+              analysis and are never linked to your identity.
+            </p>
+            <div style={{ marginTop: 22 }}>
+              <ChoiceField
+                legend="Gender"
+                value={gender}
+                onChange={setGender}
+                invalid={showErrors && !gender}
+                options={[
+                  { value: "female", label: "Female" },
+                  { value: "male", label: "Male" },
+                  { value: "other", label: "Other" },
+                ]}
+              />
+            </div>
+            <div style={{ marginTop: 18 }}>
+              <ChoiceField
+                legend="Community"
+                value={nationality}
+                onChange={setNationality}
+                invalid={showErrors && !nationality}
+                options={[
+                  { value: "palestinian", label: "Palestinian" },
+                  { value: "israeli", label: "Israeli" },
+                  { value: "other", label: "Other" },
+                ]}
+              />
+            </div>
+          </section>
+        ) : (
+          <section style={{ marginTop: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 12, borderBottom: "1px solid var(--stroke-on-navy)" }}>
+              {ICON_BY_SEGMENT[current.name] && <ProgramIcon name={ICON_BY_SEGMENT[current.name]} size={26} />}
+              <h3 style={{ color: "var(--meet-cream)" }}>{current.name}</h3>
+            </div>
+            {current.qs.map((q) => (
+              <QuestionRow
+                key={q.id}
+                q={q}
+                value={answers[q.id]}
+                onChange={(v) => setAnswer(q.id, v)}
+                invalid={showErrors && q.response_type !== "open_text" && !isAnswered(q)}
+              />
+            ))}
+          </section>
+        )}
+      </div>
 
-      {/* Questions by segment */}
-      {segments.map(([segment, qs]) => (
-        <section key={segment} style={{ marginTop: 40 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 12, borderBottom: "1px solid var(--stroke-on-navy)" }}>
-            {ICON_BY_SEGMENT[segment] && <ProgramIcon name={ICON_BY_SEGMENT[segment]} size={26} />}
-            <h3 style={{ color: "var(--meet-cream)" }}>{segment}</h3>
-          </div>
-          {qs.map((q) => (
-            <QuestionRow
-              key={q.id}
-              q={q}
-              value={answers[q.id]}
-              onChange={(v) => setAnswer(q.id, v)}
-              invalid={showErrors && q.response_type !== "open_text" && !(answers[q.id]?.num != null || answers[q.id]?.choice != null)}
-            />
-          ))}
-        </section>
-      ))}
-
-      {/* Submit */}
-      <div style={{ marginTop: 40, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-        <Button onClick={submit} disabled={submitting}>
-          {submitting ? "Submitting…" : "Submit survey"}
+      {/* Nav */}
+      <div style={{ marginTop: 32, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+        {step > 0 && (
+          <Button variant="secondary" onClick={goBack} disabled={submitting}>
+            Back
+          </Button>
+        )}
+        <Button onClick={goNext} disabled={submitting}>
+          {submitting ? "Submitting…" : isLast ? "Submit survey" : "Next section"}
         </Button>
         {error && <span style={{ color: "var(--meet-red)", fontSize: 14 }}>{error}</span>}
       </div>
@@ -259,9 +287,7 @@ function QuestionRow({
   return (
     <div id={`q-${q.id}`} style={{ padding: "20px 0", borderBottom: "1px solid rgba(254,251,244,0.07)" }}>
       <div style={{ display: "flex", gap: 8 }}>
-        <p style={{ color: invalid ? "var(--meet-red)" : "var(--meet-cream)", fontSize: 16, fontWeight: 500 }}>
-          {q.display_text}
-        </p>
+        <p style={{ color: invalid ? "var(--meet-red)" : "var(--meet-cream)", fontSize: 16, fontWeight: 500 }}>{q.display_text}</p>
       </div>
       <div style={{ marginTop: 14 }}>
         {(q.response_type === "likert5" || q.response_type === "rating5") && (
@@ -330,9 +356,11 @@ function ScaleInput({
   value: number | null;
   onChange: (v: number) => void;
 }) {
+  // Display high-to-low (5 -> 1).
+  const ordered = options.slice().reverse();
   return (
     <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-      {options.map((o) => {
+      {ordered.map((o) => {
         const active = value === o.value;
         return (
           <button
