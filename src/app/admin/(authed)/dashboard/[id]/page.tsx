@@ -111,7 +111,7 @@ export default async function DashboardPage({
               </h3>
               <div style={{ marginTop: 8 }}>
                 {data.bySegment[seg].map((c) => (
-                  <QuestionRow key={c.questionId} c={c} />
+                  <QuestionRow key={c.questionId} c={c} year={cycle.year} />
                 ))}
               </div>
             </section>
@@ -141,7 +141,35 @@ function Chip({ value, suffix = "pp" }: { value: number | null; suffix?: string 
   );
 }
 
-function QuestionRow({ c }: { c: QuestionComparison }) {
+/** Compact multi-year sparkline: prior years + current, oldest -> newest. */
+function MiniTrend({ c, year }: { c: QuestionComparison; year: number }) {
+  if (!c.history.length || c.current.favorablePct == null) return null;
+  const points = [...c.history.map((h) => ({ label: `'${String(h.year).slice(2)}`, v: h.value })), { label: `'${String(year).slice(2)}`, v: c.current.favorablePct }];
+  const w = 96;
+  const h = 22;
+  const xs = (i: number) => (points.length === 1 ? w / 2 : (i / (points.length - 1)) * (w - 4) + 2);
+  const ys = (v: number) => h - 2 - (v / 100) * (h - 4);
+  const path = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xs(i).toFixed(1)} ${ys(p.v).toFixed(1)}`).join(" ");
+  const first = c.history[0].value;
+  const span = Math.round((c.current.favorablePct - first) * 10) / 10;
+  const up = span >= 0;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }} title={points.map((p) => `${p.label} ${p.v}%`).join("  →  ")}>
+      <svg width={w} height={h} style={{ overflow: "visible" }}>
+        <path d={path} fill="none" stroke={up ? "var(--meet-teal)" : "var(--meet-red)"} strokeWidth={1.5} strokeLinejoin="round" strokeLinecap="round" />
+        {points.map((p, i) => (
+          <circle key={i} cx={xs(i)} cy={ys(p.v)} r={i === points.length - 1 ? 2.4 : 1.6} fill={i === points.length - 1 ? (up ? "var(--meet-teal)" : "var(--meet-red)") : "var(--fg-subtle)"} />
+        ))}
+      </svg>
+      <span style={{ fontSize: 11, color: "var(--fg-subtle)" }}>
+        {points.map((p) => `${p.label} ${p.v}`).join(" → ")}{" "}
+        <span style={{ color: up ? "var(--meet-teal)" : "var(--meet-red)", fontWeight: 700 }}>({up ? "+" : ""}{span}pp over {c.history.length}y)</span>
+      </span>
+    </div>
+  );
+}
+
+function QuestionRow({ c, year }: { c: QuestionComparison; year: number }) {
   if (c.responseType === "open_text") {
     return (
       <div style={{ padding: "16px 0", borderBottom: "1px solid rgba(254,251,244,0.07)" }}>
@@ -174,6 +202,7 @@ function QuestionRow({ c }: { c: QuestionComparison }) {
             <div style={{ position: "absolute", left: `${target}%`, top: -3, bottom: -3, width: 2, background: "var(--meet-cream)" }} title={`Target ${target}%`} />
           )}
         </div>
+        <MiniTrend c={c} year={year} />
       </div>
       <div>
         <span className="font-display" style={{ fontSize: 26, fontWeight: 700, color: "var(--meet-cream)" }}>

@@ -21,16 +21,23 @@ function buildContext(title: string, data: DashboardData) {
     favorable_avg: segmentFavorable(comps),
     questions: comps
       .filter((c) => c.current.favorablePct != null)
-      .map((c) => ({
-        q: c.text,
-        baseline: c.baseline || undefined,
-        favorable: c.current.favorablePct,
-        n: c.current.n,
-        target: c.target,
-        vs_target: c.vsTarget,
-        prev_years: c.history.map((h) => ({ year: h.year, favorable: h.value })),
-        vs_prev_year: c.vsPrevYear,
-      })),
+      .map((c) => {
+        // full multi-year series oldest -> newest, ending in the current cycle
+        const series = [...c.history.map((h) => ({ year: h.year, favorable: h.value })), { year: 0, favorable: c.current.favorablePct }];
+        return {
+          q: c.text,
+          baseline: c.baseline || undefined,
+          favorable: c.current.favorablePct,
+          n: c.current.n,
+          target: c.target,
+          vs_target: c.vsTarget,
+          prev_years: c.history.map((h) => ({ year: h.year, favorable: h.value })),
+          vs_prev_year: c.vsPrevYear,
+          // current vs the EARLIEST recorded year — the multi-year span
+          vs_first_year: c.history.length ? Math.round((c.current.favorablePct! - c.history[0].value) * 10) / 10 : null,
+          series,
+        };
+      }),
   }));
   return {
     survey: title,
@@ -54,7 +61,15 @@ export async function analyzeDashboard(title: string, data: DashboardData): Prom
     "",
     "Metrics: 'favorable' is the percentage of students answering favorably (top-2-box on a 5-point agreement scale,",
     "or the 'learning zone' for zone questions). 'target' is the goal set by the team. 'vs_target' and 'vs_prev_year'",
-    "are percentage-point differences (positive = above target / improved year-over-year).",
+    "are percentage-point differences (positive = above target / improved year-over-year). For each question, 'series'",
+    "is the multi-year history oldest->newest ending in this cycle (year 0 = current), and 'vs_first_year' is the",
+    "current value minus the earliest recorded year.",
+    "",
+    "IMPORTANT — analyse the MULTI-YEAR trajectory, not just the single most recent year. Using 'series' and",
+    "'vs_first_year', call out: (a) items on a sustained multi-year rise or decline (monotonic across the series),",
+    "(b) the largest multi-year swings overall, and (c) reversals — items that had been improving but dropped this",
+    "cycle (or vice versa), since a one-year dip after steady gains means something different from a steady slide.",
+    "When you cite a trend, give the actual year-by-year numbers (e.g., '64% -> 62% -> 94%').",
     "",
     "Tone: plain, considered, even-handed. No melodrama, no exclamation marks, no corporate jargon. Be specific and",
     "quantitative — cite the actual numbers and question wording. Treat Palestinians and Israelis with equal, precise",
@@ -62,8 +77,9 @@ export async function analyzeDashboard(title: string, data: DashboardData): Prom
     "",
     "Return ONLY valid JSON matching: {\"summary\": string (2-4 short paragraphs of markdown), \"highlights\":",
     "[{\"type\": \"win\"|\"concern\"|\"movement\"|\"gap\"|\"trend\", \"title\": string, \"detail\": string}]}.",
-    "Aim for 5-9 highlights covering: the strongest results, the biggest gaps below target, the largest year-over-year",
-    "movements (up and down), and any cross-segment or demographic pattern worth the team's attention.",
+    "Aim for 6-10 highlights covering: the strongest results, the biggest gaps below target, sustained MULTI-YEAR",
+    "trends (rising or falling across the whole series), notable reversals this cycle, and any cross-segment or",
+    "demographic pattern worth the team's attention. Use the 'trend' type for multi-year trajectory findings.",
   ].join("\n");
 
   const msg = await client.messages.create({
